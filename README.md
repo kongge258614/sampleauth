@@ -1,0 +1,2 @@
+springboot 集成 spring security实现前后端分离的用户认证、鉴权
+此服务将认证服务和资源服务集于一体
