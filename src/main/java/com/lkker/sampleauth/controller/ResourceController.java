@@ -1,7 +1,7 @@
 package com.lkker.sampleauth.controller;
 
+import com.lkker.sampleauth.common.annotation.ApiDescription;
 import com.lkker.sampleauth.model.UserInfo;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
  * @Description
  **/
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api")
 public class ResourceController {
 
+    @ApiDescription("查询用户信息")
     @RequestMapping("/userinfo")
     public UserInfo getUserInfo(){
         UserInfo userInfo = new UserInfo("LX1001","liliang","15810072844");
-        String principal = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        System.out.println(principal);
         return  userInfo;
     }
+
+
 }
