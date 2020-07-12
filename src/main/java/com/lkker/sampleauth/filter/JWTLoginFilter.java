@@ -61,7 +61,12 @@ public class JWTLoginFilter extends UsernamePasswordAuthenticationFilter {
                 .setExpiration(new Date(System.currentTimeMillis() + 60 * 60 * 24 * 1000))
                 .signWith(SignatureAlgorithm.HS512, ConstantKey.SIGNING_KEY)
                 .compact();
-//        response.addHeader("Authorization", "Bearer " + token);
-        response.getWriter().write(token);
+        response.addHeader("Authorization", "Bearer " + token);
+//        response.getWriter().write(token);
+    }
+
+    @Override
+    protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
+        response.getWriter().write("authentication failed, reason: " + failed.getMessage());
     }
 }
