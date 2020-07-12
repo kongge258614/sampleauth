@@ -10,16 +10,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/menu")
+@RequestMapping("/manage")
 public class MenuController {
 
     @Autowired
     private ApiMenuAssetService apiMenuAssetService;
 
-    @ApiDescription("同步系统所有菜单")
-    @PostMapping("/user/menu/sync")
-    @ResponseBody
-    public BaseMessage syncUserMenu() {
+    @ApiDescription("同步系统所有权限")
+    @PostMapping("/user/permission/sync")
+    public BaseMessage syncUserPermission() {
         apiMenuAssetService.saveAllUrl();
         return BaseMessage.SUCCESS;
     }

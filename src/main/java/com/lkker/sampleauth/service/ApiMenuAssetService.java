@@ -2,6 +2,7 @@ package com.lkker.sampleauth.service;
 
 import com.lkker.sampleauth.common.annotation.ApiDescription;
 import com.lkker.sampleauth.common.utils.IdGenerator;
+import com.lkker.sampleauth.config.MenuType;
 import com.lkker.sampleauth.dao.AuthPermissionRepository;
 import com.lkker.sampleauth.entity.AuthPermission;
 import com.lkker.sampleauth.entity.Menu;
@@ -47,6 +48,13 @@ public class ApiMenuAssetService {
                     AuthPermission authPermission = authPermissionRepository.findAuthPermissionByUrl(transformUrl2Permission(url));
                     if (authPermission == null){
                         final AuthPermission permission = new AuthPermission();
+                        if (url.startsWith("/api")){
+                            permission.setType(MenuType.API.name());
+                        }else if (url.startsWith("/manage")){
+                            permission.setType(MenuType.MANAGE.name());
+                        }else {
+                            continue;
+                        }
                         permission.setUrl(transformUrl2Permission(url));
                         permission.setDescription(apiDescription.value());
                         permission.setEditable(false);
@@ -54,13 +62,10 @@ public class ApiMenuAssetService {
                         permission.setId(IdGenerator.getNextId(AuthPermission.class));
                         authPermissionRepository.save(permission);
                     }
-
-
-
                 }
             }
         }
-        logger.info("自动添加菜单完成！");
+        logger.info("权限同步完成！");
         return "";
     }
 
