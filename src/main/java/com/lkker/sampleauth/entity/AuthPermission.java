@@ -30,6 +30,11 @@ public class AuthPermission {
      */
     private String description;
 
+    /**
+     * 类型
+     */
+    private String type;
+
     @ManyToMany
     @JoinTable(name = "authrole_authpermisson",
     joinColumns = {@JoinColumn(name = "authpermisson_id",referencedColumnName = "id")},
@@ -41,11 +46,11 @@ public class AuthPermission {
     /**
      * 是否是开放接口
      */
-//    private Boolean isPublic;
+    private Boolean isPublic;
 
 
     /**
      * 是否可以修改
      */
-//    private Boolean editable;
+    private Boolean editable;
 }
