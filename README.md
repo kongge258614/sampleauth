@@ -1,2 +1,2 @@
-springboot 集成 spring security实现前后端分离的用户认证、鉴权
-此服务将认证服务和资源服务集于一体
+springboot 集成 spring security+jwt实现前后端分离的用户认证、鉴权
+此服务将认证服务和资源服务集于一体,是简单的前后端分离的单体服务，并不是分布式服务
